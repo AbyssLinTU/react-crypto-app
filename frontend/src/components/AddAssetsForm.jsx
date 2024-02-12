@@ -1,6 +1,6 @@
 import React, {  useRef, useState } from 'react'
 import { useCrypto } from '../App'
-import { Flex, Select,Space,Typography,Divider, Form,Button,Input,Checkbox, InputNumber, DatePicker, Result } from 'antd'
+import {  Select,Space,Divider, Form,Button, InputNumber, DatePicker, Result } from 'antd'
 import { capitalize } from '../utils'
 import { CoinInfo } from './CoinInfo'
 
@@ -23,13 +23,17 @@ export const AddAssetsForm = ({onClose}) => {
         addAsset(newAsset)
     }
     function handleAmountChange(value){
-        const price= form.getFieldValue("price")
+        
+      const price= form.getFieldValue("price")
+
         form.setFieldsValue({
             total:+(value*price).toFixed(2)+"$"
         })
     }
-    function handlePriceChange(value){
-        const amount= form.getFieldValue("amount")
+    function handlePriceChange(value){ 
+      
+      const amount= form.getFieldValue("amount")
+
         form.setFieldsValue({
             total:+(value*amount).toFixed(2)+"$"
         })
@@ -72,6 +76,11 @@ export const AddAssetsForm = ({onClose}) => {
       />
     }
     else{
+     
+      let calculatedFixed=2
+      while(coin.price.toFixed(calculatedFixed)<=0){
+        calculatedFixed+=1
+      }
   return (
     <Form
     form={form}
@@ -95,7 +104,7 @@ export const AddAssetsForm = ({onClose}) => {
       maxWidth: 600,
     }}
     initialValues={{
-      price:+coin.price.toFixed(2),
+      price:+coin.price.toFixed(calculatedFixed),
     }}
     onFinish={onFinish}
   >

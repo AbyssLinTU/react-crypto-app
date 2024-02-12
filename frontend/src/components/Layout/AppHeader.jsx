@@ -42,7 +42,7 @@ export const AppHeader = () => {
     }
   return (
     <Layout.Header style={headerStyle}>
-        <Select 
+        <Select onBlur={()=>setSelect(false)}
     style={{
       width: 250,
     }}

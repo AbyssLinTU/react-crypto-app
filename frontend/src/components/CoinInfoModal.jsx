@@ -34,9 +34,14 @@ const CoinInfoModalDateDataSample=({text,info})=>{
     )
 }
 const CoinInfoModalDataSample=({text,info,dimension,fixed})=>{
+  let calculatedFixed = fixed;
+
+  while (info.toFixed(calculatedFixed) <= 0 && calculatedFixed < 12) {
+    calculatedFixed += 1;
+  }
   return(<><Typography.Paragraph>
     <Typography.Text strong style={{marginRight:10}}>{text}: </Typography.Text>
-    {info.toFixed(fixed)}{dimension}
+    {info.toFixed(calculatedFixed)}{dimension}
   </Typography.Paragraph>
     </>
     )

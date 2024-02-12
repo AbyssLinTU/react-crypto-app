@@ -1,6 +1,6 @@
 import {createContext, useEffect, useState} from 'react'
-import { fakeGetCryptoAssets,fakeGetСryptoData ,} from '../api';
-import { capitalize, percentDifference } from '../utils';
+import { fakeGetCryptoAssets,GetСryptoData ,} from '../api';
+import { percentDifference } from '../utils';
 
 const CryptoContext = createContext({
     assets:[],
@@ -31,7 +31,7 @@ export function CryptoContextProvider({children}){
         async function preload(){
             
             setLoading(true);
-            const crypto=await fakeGetСryptoData()
+            const crypto=await GetСryptoData()
             const assets=await fakeGetCryptoAssets()
             setCrypto(crypto.result)
             setAssets(mapAssets(assets,crypto.result))
